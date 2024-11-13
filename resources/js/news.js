@@ -3,8 +3,6 @@ const NEWS_URL = `https://newsapi.org/v2/everything?q=Tokyo&language=ja&from=${n
 fetch(NEWS_URL)
     .then(response => response.json())
     .then(data => {
-        console.log(data); // 检查返回的完整数据
-
         const newsList = document.getElementById('news-list');
         newsList.innerHTML = '';
 
