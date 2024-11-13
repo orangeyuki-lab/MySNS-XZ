@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/user/{username}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/user/{username}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::post('/user/{username}/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
-Auth::routes();
-
-<<<<<<< Updated upstream
-=======
-Auth::routes();
-
->>>>>>> Stashed changes
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
