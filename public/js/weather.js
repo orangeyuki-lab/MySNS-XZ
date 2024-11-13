@@ -1,8 +1,8 @@
 const API_KEY = "58480e518670640321afa57a7a1257fe";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
-// Fetch current weather data for Tokyo, Japan
-fetch(`${BASE_URL}?q=Tokyo,jp&appid=${API_KEY}&units=metric`)
+// Fetch current weather data for Tokyo, Japan in Japanese
+fetch(`${BASE_URL}?q=Tokyo,jp&appid=${API_KEY}&units=metric&lang=ja`)
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -12,7 +12,7 @@ fetch(`${BASE_URL}?q=Tokyo,jp&appid=${API_KEY}&units=metric`)
     .then(data => {
         const weatherInfo = document.getElementById('weather-info');
         
-        // Display current weather data
+        // Display current weather data in Japanese
         weatherInfo.innerHTML = `
             <p>Location: ${data.name}</p>
             <p>Temperature: ${data.main.temp} °C</p>

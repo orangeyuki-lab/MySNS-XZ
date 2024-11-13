@@ -1,15 +1,22 @@
-const API_KEY = 'd43a0685062d4ec3a3fd2fbd9e88032d';
-const NEWS_URL = 'https://newsapi.org/v2/everything?q=Tokyo&language=ja&apiKey=${API_KEY}';
+const NEWS_URL = `https://newsapi.org/v2/everything?q=Tokyo&language=ja&from=${new Date().toISOString().split('T')[0]}&sortBy=popularity&apiKey=d43a0685062d4ec3a3fd2fbd9e88032d`;
 
 fetch(NEWS_URL)
     .then(response => response.json())
     .then(data => {
         const newsList = document.getElementById('news-list');
         newsList.innerHTML = '';
-        data.articles.slice(0, 5).forEach(article => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = '<a href="${article.url}" target="_blank">${article.title}</a>';
-            newsList.appendChild(listItem);
-        });
+
+        if (data.articles && data.articles.length > 0) {
+            data.articles.slice(0, 5).forEach(article => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="${article.url}" target="_blank">${article.title}</a>`;
+                newsList.appendChild(listItem);
+            });
+        } else {
+            newsList.innerHTML = '<li>No news articles found for today.</li>';
+        }
     })
-    .catch(error => console.error('Error fetching news:', error));
+    .catch(error => {
+        console.error('Error fetching news:', error);
+        document.getElementById('news-list').innerHTML = `<li>Unable to load news data. Error: ${error.message}</li>`;
+    });
