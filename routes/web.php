@@ -21,3 +21,10 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+<<<<<<< Updated upstream
+=======
+Auth::routes();
+
+>>>>>>> Stashed changes
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
