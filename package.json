@@ -1,8 +1,12 @@
-{
+    {
     "private": true,
+    // "scripts": {
+    //     "dev": "vite",
+    //     "build": "vite build"
+    // },
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build && mv public/build/.vite/manifest.json public/build/manifest.json"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
