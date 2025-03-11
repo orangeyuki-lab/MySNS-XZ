@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TranslationController;
+use App\Http\Controllers\TopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +25,10 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/user/{username}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/user/{username}/edit', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 Route::post('/user/{username}/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+Route::get('/', [TranslationController::class, 'index'])->name('home');
+Route::post('/translate', [TranslationController::class, 'translate'])->name('translate');
+
+Route::get('/index', [TopController::class, 'index'])->name('index');
 
 // Auth::routes();
